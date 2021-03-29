@@ -32,7 +32,8 @@ namespace ConsoleUI
             ProductManager productManager = new ProductManager(new EfProductDal());
 
             var result = productManager.GetProductDetails();
-            if(result.Success==true)
+
+            if (result.Success == true)
             {
                 foreach (var product in result.Data)
                 {
@@ -42,12 +43,9 @@ namespace ConsoleUI
             else
             {
                 Console.WriteLine(result.Message);
-            }
-            foreach (var product in productManager.GetProductDetails().Data)
-            {
-                Console.WriteLine(product.ProductName + " / " + product.CategoryName);
 
             }
+            Console.ReadLine();
         }
     }
 }
