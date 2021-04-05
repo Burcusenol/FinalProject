@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOS;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,14 +26,17 @@ namespace Business.Concrete
 
        // [LogAspect]-->AOP
        //[Validate]
+
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             //business codes
-            if(product.ProductName.Length<2)
-            {
-                //magic string
-                return new ErrorResult(Messages.ProductNameInValid);
-            }
+
+            //validation:business kodlarına uygun olup olmadığını test eder.
+
+            
+
+
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }
