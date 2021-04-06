@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
@@ -18,14 +19,18 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        
 
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
+            
         }
 
        // [LogAspect]-->AOP
        //[Validate]
+
+
 
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
@@ -33,12 +38,10 @@ namespace Business.Concrete
             //business codes
 
             //validation:business kodlarına uygun olup olmadığını test eder.
-
             
-
-
-            _productDal.Add(product);
-            return new SuccessResult(Messages.ProductAdded);
+                _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAdded);
+            
         }
 
         public IDataResult<List<Product>> GetAll()
