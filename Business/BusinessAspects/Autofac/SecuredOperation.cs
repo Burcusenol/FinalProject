@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
+using Business.Constants;
+using Core.Extensions;
 
 namespace Business.BusinessAspects.Autofac
 {
